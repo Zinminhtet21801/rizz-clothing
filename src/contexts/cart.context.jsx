@@ -5,7 +5,6 @@ const addCartItem = (cartItems, productToAdd) => {
     (cartItem) => cartItem.id === productToAdd.id
   );
 
-  console.log(...cartItems);
 
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
