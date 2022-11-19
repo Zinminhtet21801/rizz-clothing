@@ -8,8 +8,13 @@ const CART_INITIAL_STATE = {
 export const cartReducer = (state = CART_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
   switch (type) {
+    case CART_ACTION_TYPES.SET_CART_ALL_ITEMS_CLEAR: {
+      return {
+        ...state,
+        cartItems: [],
+      };
+    }
     case CART_ACTION_TYPES.SET_CART_ITEMS: {
-      console.log(state, payload, "herer");
       return {
         ...state,
         cartItems: payload,
