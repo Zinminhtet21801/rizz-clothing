@@ -15,6 +15,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { useNavigate } from "react-router-dom";
 import {
   clearAllItemsFromCart,
+  setIsCartOpen,
   //   clearItemFromCart,
 } from "../../store/cart/cart.action";
 import { StripeCardElement } from "@stripe/stripe-js";
@@ -31,6 +32,7 @@ const PaymentForm = () => {
   const currentUser = useSelector(selectCurrentUser);
   const cartTotal = useSelector(selectCartTotal);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
   const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -71,6 +73,7 @@ const PaymentForm = () => {
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
         dispatch(clearAllItemsFromCart());
+        dispatch(setIsCartOpen(false));
         alert("Payment Successful");
         navigate("/");
       }
